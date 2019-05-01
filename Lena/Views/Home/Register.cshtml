@@ -1,0 +1,95 @@
+﻿
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+
+
+<form action="/Home/Register" method="post" role="form">
+    <div class="form-group">
+
+        <label for="exampleInputEmail1">Kullanıcı Adı:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Kullanıcı Adınızı Giriniz"
+               name="KullaniciAdi">
+
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Parola: </label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Parola Giriniz"
+               name="Parola">
+
+    </div>
+
+
+    <div class="form-group">
+
+
+        <label for="exampleInputEmail1">Email:</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail Giriniz"
+               name="Email">
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="exampleInputEmail1">Gizli Soru:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Gizli Sorunuzu Giriniz"
+               name="GizliSoru">
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="exampleInputEmail1">Gizli Cevap:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Gizli Cevabınızı Giriniz"
+               name="GizliCevap">
+
+    </div>
+
+    @{ if (String.IsNullOrEmpty(@ViewBag.Mesaj))
+        {
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-8">
+                    <span class="form-control alert-danger">@ViewBag.Mesaj</span>
+                </div>
+            </div>
+        }
+    }
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
+<br />
+<h5>@Html.ActionLink("Zaten Üye Misin ?","Login") </h5>
+
+
+
+
+
+
+  
