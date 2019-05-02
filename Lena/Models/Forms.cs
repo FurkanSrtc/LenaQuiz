@@ -12,21 +12,21 @@ namespace Lena.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Forms
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Forms()
         {
-            this.Fields = new HashSet<Field>();
+            this.Fields = new HashSet<Fields>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public Nullable<System.DateTime> createdAt { get; set; }
-        public Nullable<int> createdBy { get; set; }
+        public string createdBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Field> Fields { get; set; }
+        public virtual ICollection<Fields> Fields { get; set; }
     }
 }

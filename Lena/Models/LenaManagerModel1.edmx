@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LenaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LenaDBManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Fields">
           <Key>
             <PropertyRef Name="id" />
@@ -15,21 +15,28 @@
           <Property Name="Name" Type="varchar" MaxLength="25" />
           <Property Name="DataType" Type="varchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="FormNames">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="25" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Forms">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="256" />
           <Property Name="description" Type="varchar" MaxLength="50" />
           <Property Name="createdAt" Type="date" />
-          <Property Name="createdBy" Type="int" />
+          <Property Name="createdBy" Type="varchar" MaxLength="256" />
         </EntityType>
-        <Association Name="FK_FieldsUserId_UsersId">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+        <Association Name="FK_FieldsId_FormsId">
+          <End Role="Forms" Type="Self.Forms" Multiplicity="0..1" />
           <End Role="Fields" Type="Self.Fields" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="Forms">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Fields">
@@ -37,20 +44,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LenaDBModelStoreContainer">
+        <EntityContainer Name="LenaDBManagerModelStoreContainer">
           <EntitySet Name="Fields" EntityType="Self.Fields" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_FieldsUserId_UsersId" Association="Self.FK_FieldsUserId_UsersId">
-            <End Role="Users" EntitySet="Users" />
+          <EntitySet Name="FormNames" EntityType="Self.FormNames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Forms" EntityType="Self.Forms" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FieldsId_FormsId" Association="Self.FK_FieldsId_FormsId">
+            <End Role="Forms" EntitySet="Forms" />
             <End Role="Fields" EntitySet="Fields" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LenaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Field">
+      <Schema Namespace="LenaDBManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Fields">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -59,24 +66,40 @@
           <Property Name="Required" Type="Boolean" />
           <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="DataType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_FieldsUserId_UsersId" FromRole="Fields" ToRole="Users" />
+          <NavigationProperty Name="Forms" Relationship="LenaDBManagerModel.FK_FieldsId_FormsId" FromRole="Fields" ToRole="Forms" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Forms">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="createdAt" Type="DateTime" Precision="0" />
-          <Property Name="createdBy" Type="Int32" />
-          <NavigationProperty Name="Fields" Relationship="Self.FK_FieldsUserId_UsersId" FromRole="Users" ToRole="Fields" />
+          <Property Name="createdBy" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Fields" Relationship="LenaDBManagerModel.FK_FieldsId_FormsId" FromRole="Forms" ToRole="Fields" />
         </EntityType>
-        <Association Name="FK_FieldsUserId_UsersId">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Fields" Type="Self.Field" Multiplicity="*" />
+        <EntityContainer Name="LenaDBManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fields" EntityType="Self.Fields" />
+          <EntitySet Name="Forms" EntityType="Self.Forms" />
+          <EntitySet Name="FormNames" EntityType="LenaDBManagerModel.FormNames" />
+          <AssociationSet Name="FK_FieldsId_FormsId" Association="LenaDBManagerModel.FK_FieldsId_FormsId">
+            <End Role="Forms" EntitySet="Forms" />
+            <End Role="Fields" EntitySet="Fields" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FormNames">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_FieldsId_FormsId">
+          <End Type="LenaDBManagerModel.Forms" Role="Forms" Multiplicity="0..1" />
+          <End Type="LenaDBManagerModel.Fields" Role="Fields" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="Forms">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Fields">
@@ -84,22 +107,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LenaDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Fields" EntityType="Self.Field" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_FieldsUserId_UsersId" Association="Self.FK_FieldsUserId_UsersId">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Fields" EntitySet="Fields" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LenaDBModelStoreContainer" CdmEntityContainer="LenaDBEntities">
+        <EntityContainerMapping StorageEntityContainer="LenaDBManagerModelStoreContainer" CdmEntityContainer="LenaDBManagerEntities">
           <EntitySetMapping Name="Fields">
-            <EntityTypeMapping TypeName="LenaDBModel.Field">
+            <EntityTypeMapping TypeName="LenaDBManagerModel.Fields">
               <MappingFragment StoreEntitySet="Fields">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -109,14 +124,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="LenaDBModel.User">
-              <MappingFragment StoreEntitySet="Users">
+          <EntitySetMapping Name="Forms">
+            <EntityTypeMapping TypeName="LenaDBManagerModel.Forms">
+              <MappingFragment StoreEntitySet="Forms">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="createdAt" ColumnName="createdAt" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormNames">
+            <EntityTypeMapping TypeName="LenaDBManagerModel.FormNames">
+              <MappingFragment StoreEntitySet="FormNames">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -134,7 +157,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

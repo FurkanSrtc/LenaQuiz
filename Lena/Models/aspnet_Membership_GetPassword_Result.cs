@@ -10,16 +10,10 @@
 namespace Lena.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Field
+    public partial class aspnet_Membership_GetPassword_Result
     {
-        public int id { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<bool> Required { get; set; }
-        public string Name { get; set; }
-        public string DataType { get; set; }
-    
-        public virtual User User { get; set; }
+        public string Column1 { get; set; }
+        public Nullable<int> Column2 { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace Lena.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LenaDBEntities : DbContext
+    public partial class LenaDBManagerEntities : DbContext
     {
-        public LenaDBEntities()
-            : base("name=LenaDBEntities")
+        public LenaDBManagerEntities()
+            : base("name=LenaDBManagerEntities")
         {
         }
     
@@ -25,7 +25,8 @@ namespace Lena.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Field> Fields { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Fields> Fields { get; set; }
+        public virtual DbSet<Forms> Forms { get; set; }
+        public virtual DbSet<FormNames> FormNames { get; set; }
     }
 }

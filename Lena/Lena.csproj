@@ -106,15 +106,25 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Models\LenaModel.Context.tt">
+    <Content Include="Models\LenaManagerModel1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LenaModel.Context.cs</LastGenOutput>
-      <DependentUpon>LenaModel.edmx</DependentUpon>
+      <DependentUpon>LenaManagerModel1.edmx</DependentUpon>
+      <LastGenOutput>LenaManagerModel1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\LenaModel.tt">
+    <Content Include="Models\LenaManagerModel1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LenaModel.edmx</DependentUpon>
-      <LastGenOutput>LenaModel.cs</LastGenOutput>
+      <DependentUpon>LenaManagerModel1.edmx</DependentUpon>
+      <LastGenOutput>LenaManagerModel1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LenaModel1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LenaModel1.edmx</DependentUpon>
+      <LastGenOutput>LenaModel1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\LenaModel1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LenaModel1.edmx</DependentUpon>
+      <LastGenOutput>LenaModel1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -138,6 +148,20 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\LenaModel1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LenaModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LenaModel1.edmx.diagram">
+      <DependentUpon>LenaModel1.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\LenaManagerModel1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LenaManagerModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\LenaManagerModel1.edmx.diagram">
+      <DependentUpon>LenaManagerModel1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -159,10 +183,11 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -181,42 +206,73 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Field.cs">
-      <DependentUpon>LenaModel.tt</DependentUpon>
+    <Compile Include="Models\aspnet_Membership_GetPasswordWithFormat_Result.cs">
+      <DependentUpon>LenaModel1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LenaModel.Context.cs">
+    <Compile Include="Models\aspnet_Membership_GetPassword_Result.cs">
+      <DependentUpon>LenaModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Membership_GetUserByName_Result.cs">
+      <DependentUpon>LenaModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Membership_GetUserByUserId_Result.cs">
+      <DependentUpon>LenaModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Profile_GetProperties_Result.cs">
+      <DependentUpon>LenaModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_UsersInRoles_RemoveUsersFromRoles_Result.cs">
+      <DependentUpon>LenaModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Fields.cs">
+      <DependentUpon>LenaManagerModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormNames.cs">
+      <DependentUpon>LenaManagerModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Forms.cs">
+      <DependentUpon>LenaManagerModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LenaManagerModel1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LenaModel.Context.tt</DependentUpon>
+      <DependentUpon>LenaManagerModel1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LenaModel.cs">
+    <Compile Include="Models\LenaManagerModel1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LenaModel.tt</DependentUpon>
+      <DependentUpon>LenaManagerModel1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LenaModel.Designer.cs">
+    <Compile Include="Models\LenaManagerModel1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LenaModel.edmx</DependentUpon>
+      <DependentUpon>LenaManagerModel1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>LenaModel.tt</DependentUpon>
+    <Compile Include="Models\LenaModel1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LenaModel1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LenaModel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LenaModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LenaModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LenaModel1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="Models\LenaModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LenaModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\LenaModel.edmx.diagram">
-      <DependentUpon>LenaModel.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
