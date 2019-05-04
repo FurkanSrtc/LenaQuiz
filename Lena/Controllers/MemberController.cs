@@ -75,7 +75,22 @@ namespace Lena.Controllers
             return View(fields);
         }
 
+        public ActionResult DeleteForm(int? id)
+        {
+            List<Fields> fields = dbm.Fields.Where(x => x.UserId == id).ToList();
 
+
+            foreach (var item in fields)
+            {
+                dbm.Fields.Remove(item);
+            }
+
+            dbm.Forms.Remove(dbm.Forms.Where(x=>x.id==id).FirstOrDefault());
+          
+            dbm.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
 
     }
 }

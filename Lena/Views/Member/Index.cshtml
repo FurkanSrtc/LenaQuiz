@@ -41,7 +41,8 @@
             @Html.DisplayFor(modelItem => item.createdBy)
         </td>
         <td>
-            @Html.ActionLink("Görüntüle", "DetailsForm", new { id=item.id }) 
+            @Html.ActionLink("Görüntüle", "DetailsForm", new { id = item.id }) |
+            @Html.ActionLink("Sil", "DeleteForm", new { id = item.id })
         </td>
     </tr>
 }
