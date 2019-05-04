@@ -7,7 +7,7 @@
 <h2>Formlarınız</h2>
 
 <p>
-    @Html.ActionLink("Form Oluştur", "Create")
+    @Html.ActionLink("Form Oluştur", "CreateForm")
 </p>
 <table class="table">
     <tr>
@@ -41,9 +41,7 @@
             @Html.DisplayFor(modelItem => item.createdBy)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Görüntüle", "DetailsForm", new { id=item.id }) 
         </td>
     </tr>
 }

@@ -263,6 +263,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LenaModel1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\FormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +274,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\Create.cshtml" />
+    <Content Include="Views\Member\CreateForm.cshtml" />
+    <Content Include="Views\Member\DetailsForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

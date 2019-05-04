@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Lena.Models.Fields>
+
+@{
+    ViewBag.Title = "DetailsForm";
+}
+
+<h2>Form Tabloları</h2>
+
+<table class="table">
+
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.Label(item.Name)
+        </td>
+
+        <td>
+
+            @switch (item.DataType)
+            {
+                case "String":
+                    @Html.TextBox("String")
+
+                    break;
+
+                case "Int":
+            <input type="number" name="quantity" >
+                    break;
+
+                case "Boolean":
+                    @Html.EditorFor(model => item.Required);
+
+
+                    break;
+                default:
+                    break;
+            }
+
+
+
+        </td>
+
+
+    </tr>
+}
+
+</table>
